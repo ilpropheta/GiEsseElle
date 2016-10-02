@@ -1,0 +1,14 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/packages
+/x64/Debug
+/GSL.Type/Debug
+/GSL.Bounds/Debug
+/Debug
+/Cpp17.StringView/Debug
+/GSL.Bounds/x64/Debug
+/GSL.Interfaces/Debug
+/GSL.Lifetime/Debug
+*.db
