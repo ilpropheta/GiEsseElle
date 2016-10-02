@@ -7,8 +7,6 @@ This demo supports my talk at Microsoft's event [Future Decoded 2016](https://ww
 
 > Let's change C++ with Microsoft GSL and Guidelines Checkers
 
-Slides of my talk here:
-
 ## Set up
 
 `GiEsseElle` consists in 5 small subprojects each showing a different aspect to check and fix:
@@ -27,6 +25,12 @@ Slides of my talk here:
 Actually, adding a dependency to the latter will automatically add a dependency to the former as well.
 
 Each project is self-contained and can be compiled, analyzed and run separately from the others (this is valuable for showing demos quickly).
+
+Each project (apart from Cpp17.StringView) uses CppCoreCheck for getting extra warning whenever a guidelines is violated:
+
+![Enabling Code Analysis](https://github.com/ilpropheta/GiEsseElle/blob/master/pics/enabling-cppcorecheck-1.png)
+
+![Enabling CppCoreCheck](https://github.com/ilpropheta/GiEsseElle/blob/master/pics/enabling-cppcorecheck-2.png)
 
 ### Important note on the GSL
 
