@@ -86,17 +86,24 @@ int main()
 
 	cout << (actual.data() == string_view(expected)) << "\n";
 
-	// BONUS: string_view + transparent comparators
+	// >>>>>>>>> BONUS: string_view + transparent comparators
 
 	//					v--- this is a *transparent* comparator
 	map<string, int, less<>> mm{
-        {"a", 1},
-        {"b", 2}
-    };
+           {"a", 1},
+           {"b", 2}
+        };
    
-    auto entry = string_view("  a");
+        auto entry = string_view("  a");
 	// logical trim
-    entry = entry.substr(entry.find_first_not_of(' '));
-    //			     v--- this will not create a temporary std::string!
-	cout << mm.find(entry)->second;
+        entry = entry.substr(entry.find_first_not_of(' '));
+        //	           v--- this will not create a temporary std::string!
+        cout << mm.find(entry.data())->second;
+	// Note: calling mm.find(entry) directly causes a linker error (only in Debug):
+	// fatal error LNK1179: invalid or corrupt file: duplicate COMDAT '??$?MDU?$char_traits@D@std@@@experimental@@YA_NV?$basic_string_view@DU?$char_traits@D@std@@@0@0@Z'
+	// I have not investigated in deep, but I think it's related to some strange template expansion.
+	// Release mode does not exhibit this issue.
+	// Using .data() is valid in this example, but it may be not in general since the string_view may refer
+	// only to a portion of the underlying const char*.
+	// string_view uses its size to perform the correct comparison, instead less<> with .data() will consider the whole const char*.
 }
